@@ -15,7 +15,7 @@ const props = defineProps({
 const emit = defineEmits(['taskToggled'])
 
 // Days of the week (Monday to Sunday)
-const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
 // Function to toggle a task state for a specific day
 function toggleTask(task, dayIndex) {
@@ -47,13 +47,13 @@ function toggleTask(task, dayIndex) {
             {{ task.name }}
             <div v-if="task.description" class="task-description">{{ task.description }}</div>
           </td>
-          <td v-for="(day, dayIndex) in daysOfWeek" :key="dayIndex" class="task-cell">
-            <input
-              type="checkbox"
-              :checked="taskStates[task.id] && taskStates[task.id][dayIndex]"
-              @change="toggleTask(task, dayIndex)"
-              class="task-checkbox"
-            />
+          <td
+            v-for="(day, dayIndex) in daysOfWeek"
+            :key="dayIndex"
+            class="task-cell"
+            :class="{ 'task-completed': taskStates[task.id] && taskStates[task.id][dayIndex] }"
+            @click="toggleTask(task, dayIndex)"
+          >
             <img
               v-if="taskStates[task.id] && taskStates[task.id][dayIndex]"
               src="../assets/star.png"
@@ -110,6 +110,8 @@ th {
   position: relative;
   min-width: 50px;
   height: 50px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .task-checkbox {

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
-import StarTable from './components/StarTable.vue'
 import StickerChart from './components/StickerChart.vue'
 import { ref } from 'vue'
 
@@ -8,12 +7,18 @@ const myTasks = ref([
   { id: 1, name: 'Morning Exercise', description: '30 minutes of cardio' },
   { id: 2, name: 'Read a Book', description: 'At least 20 pages' },
   { id: 3, name: 'Drink Water', description: '8 glasses' },
+  { id: 4, name: 'Dental Hygiene', description: 'Brush teeth' },
+  { id: 5, name: 'Eat Real Food', description: 'Eat a balanced and nutritious meal' },
+  { id: 6, name: 'Body Hygiene', description: 'Shower' },
 ])
 
 const myTaskStates = ref({
   1: [false, true, false, true, false, false, false],
   2: [false, false, false, false, false, true, true],
   3: [true, true, true, true, true, true, true],
+  4: [false, true, false, true, false, false, false],
+  5: [false, true, false, true, false, false, false],
+  6: [false, true, false, true, false, false, false],
 })
 
 function handleTaskToggle({ task, dayIndex, day, newState }) {
